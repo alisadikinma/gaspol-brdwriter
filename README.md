@@ -4,7 +4,7 @@
 Requirements per IIBA BABOK v3 and ISO/IEC/IEEE 29148, plus the commercial terms the
 client signs — in one document, behind a blocking quality gate.
 
-![version](https://img.shields.io/badge/version-0.1.0-2f6f5c)
+![version](https://img.shields.io/badge/version-0.1.1-2f6f5c)
 ![license](https://img.shields.io/badge/license-MIT-2f6f5c)
 ![claude code](https://img.shields.io/badge/Claude%20Code-plugin-2f6f5c)
 ![language](https://img.shields.io/badge/output-Bahasa%20Indonesia%20%7C%20English-2f6f5c)

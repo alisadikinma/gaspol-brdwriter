@@ -5,7 +5,7 @@ set -uo pipefail
 cd "$(dirname "$0")" || exit 1
 rc=0
 for t in guard-generic.sh frontmatter.sh refs-present.sh fixture-shape.sh \
-         deps-present.sh skill-content.sh; do
+         deps-present.sh skill-content.sh refs-resolve.sh; do
   echo "=== $t"
   [ -f "$t" ] || { echo "MISSING $t"; rc=1; continue; }
   bash "$t" || rc=1

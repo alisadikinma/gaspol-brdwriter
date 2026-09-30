@@ -5,6 +5,9 @@ description: The blocking gate of gaspol-brdwriter. Use before any BRD is sent, 
 
 # brd-gate
 
+> Paths to plugin files (`../../references/…`, `../../templates/…`) are relative to this
+> skill's own folder, not to the working directory.
+
 > The gate is the last reader who can still ask a question. After it, the client reads
 > the document alone, and a builder codes whatever reading they happen to choose.
 
@@ -14,10 +17,10 @@ description: The blocking gate of gaspol-brdwriter. Use before any BRD is sent, 
 ## Input
 
 - `brd.md` in the working folder, or the BRD file the user names. Missing → refuse.
-- Load: `references/ieee29148-checklist.md`, `references/ambiguity-words.md`,
-  `references/babok-classification.md`, `references/commercial-section.md`,
-  `templates/traceability-matrix.md`.
-- Section numbers below refer to `templates/brd-template.md` (`## 0.` to `## 22.`).
+- Load: `../../references/ieee29148-checklist.md`, `../../references/ambiguity-words.md`,
+  `../../references/babok-classification.md`, `../../references/commercial-section.md`,
+  `../../templates/traceability-matrix.md`.
+- Section numbers below refer to `../../templates/brd-template.md` (`## 0.` to `## 22.`).
 
 **A BRD written elsewhere** may use other IDs and headings. Map its items to the BABOK
 classes and to the template sections, report what is missing as findings, and do **not**
@@ -31,9 +34,9 @@ section number) and the line it sits on.
 1. **IEEE 29148 characteristics.** Every requirement row (`BR-`, `SR-`, `FR-`, `NFR-`,
    `RULE-`, `DI-`, `TR-`) against necessary, unambiguous, complete, consistent,
    verifiable, feasible, traceable — plus singular and implementation-free — using the
-   test questions in `references/ieee29148-checklist.md`. "Verifiable" means answered
+   test questions in `../../references/ieee29148-checklist.md`. "Verifiable" means answered
    yes/no by a record or an event, not by someone's judgement. Also check duplicate IDs.
-2. **Vague words.** Any word from `references/ambiguity-words.md` without a measurable
+2. **Vague words.** Any word from `../../references/ambiguity-words.md` without a measurable
    bound (number + unit, or a named standard) in the same row. Also: comparatives without
    reference, missing actors, pronouns with two referents, compound requirements.
 3. **Trace chain.** Every `SR-` has a parent `BR-`; every `FR-`/`NFR-` has a parent

@@ -5,6 +5,9 @@ description: First phase of gaspol-brdwriter. Use before any BRD is drafted to g
 
 # brd-interview
 
+> Paths to plugin files (`../../references/…`, `../../templates/…`) are relative to this
+> skill's own folder, not to the working directory.
+
 > A question whose answer is already written down is attrition, not diligence. A figure
 > the user did not give is an invention, however typical it looks.
 
@@ -42,7 +45,7 @@ one line with the error text and continue with the full interview. Never retry i
 and never treat an error as "no notes exist".
 
 Never hardcode a path, a vault name, a project name, or a person's name into this skill
-or into `references/`. The instruction to look ships with the plugin; the address is
+or into the plugin's `references/`. The instruction to look ships with the plugin; the address is
 runtime input.
 
 ### 0b. Search it — targeted, never read-all
@@ -115,7 +118,7 @@ user confirms it in this session.
 - Stakeholders with RACI.
 - In scope and out of scope — both lists, never only one.
 - As-is process as a short step list, later drawn as Mermaid by `brd-draft`.
-- Pick the matching bank in `references/domain-questions.md` (manufacturing, IoT,
+- Pick the matching bank in `../../references/domain-questions.md` (manufacturing, IoT,
   logistics, integration, enhancement) and ask only the open questions from it.
 
 ### Phase 5 — constraints, risks, compliance, commercial
@@ -127,7 +130,7 @@ user confirms it in this session.
 - **Commercial facts (never invent):** package and scope the price covers, price, tax
   treatment and rate, payment terms with the milestone each is tied to, UAT window,
   warranty and hypercare, offer validity date, signatories for both parties.
-  See `references/commercial-section.md` for what is needed.
+  See `../../references/commercial-section.md` for what is needed.
 
 Phases 3–4 (requirements, transition) are written by `brd-draft` from this brief.
 

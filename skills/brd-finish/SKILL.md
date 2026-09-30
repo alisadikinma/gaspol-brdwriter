@@ -5,6 +5,9 @@ description: Final phase of gaspol-brdwriter. Use once brd-gate has returned PAS
 
 # brd-finish
 
+> Paths to plugin files (`../../references/…`, `../../templates/…`) are relative to this
+> skill's own folder, not to the working directory.
+
 > The .docx is what the client signs and every invoice will cite. It is only ever made
 > from a brd.md that passed the gate in its current form.
 

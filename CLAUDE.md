@@ -25,6 +25,10 @@ payment terms tied to milestones, acceptance, sign-off). Design:
 - `research/sources.md` pins every borrowed repo to a commit SHA with its license.
   RE-Skills has no license: ideas only, never text.
 
+- Skills name plugin files as `../../references/…` / `../../templates/…` — relative to
+  the skill folder, because an installed skill runs in the user's project directory.
+  `tests/refs-resolve.sh` fails on a bare path or a broken one.
+
 ## Tests
 
 `bash tests/run-all.sh` — bash + grep + awk. A missing script is RED. Must print

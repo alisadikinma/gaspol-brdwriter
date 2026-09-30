@@ -5,6 +5,9 @@ description: Orchestrate a client-signable Business Requirements Document (BRD) 
 
 # gaspol-brdwriter (router)
 
+> Paths to plugin files (`../../references/…`, `../../templates/…`) are relative to this
+> skill's own folder, not to the working directory.
+
 > A BRD here is two things at once: the requirements the solution must meet, and the
 > signed commercial basis every invoice will reference. Both must survive the gate.
 
@@ -37,7 +40,7 @@ One working folder holds one BRD. For a second BRD, use a second folder.
    (fleet size, machine count, user count, volumes); client system names (ERP, MES, SCADA,
    vendor). Missing → STOP and ask. Never fill with a "typical" value.
 2. **Generic only in the plugin.** No client, city, person, vault name, or absolute path is
-   written into `skills/`, `references/`, `templates/`, or `evals/`. Those are runtime
+   written into the plugin's `skills/`, `references/`, `templates/`, or `evals/`. Those are runtime
    input. `bash tests/guard-generic.sh` enforces this.
 3. **SKILL.md frontmatter is `name` + `description` only.**
 4. **Never skip `brd-gate`.** No `.docx` without a current PASS.
@@ -50,13 +53,13 @@ One working folder holds one BRD. For a second BRD, use a second folder.
 
 | Skill | Reads |
 |---|---|
-| `brd-interview` | `references/domain-questions.md`, `references/babok-classification.md`; the user's knowledge base (optional) |
-| `brd-draft` | `templates/brd-template.md`, `templates/traceability-matrix.md`, `references/babok-classification.md`, `references/ears-patterns.md`, `references/ambiguity-words.md`, `references/commercial-section.md` |
-| `brd-gate` | `references/ieee29148-checklist.md`, `references/ambiguity-words.md`, `references/babok-classification.md`, `references/commercial-section.md`, `templates/traceability-matrix.md` |
+| `brd-interview` | `../../references/domain-questions.md`, `../../references/babok-classification.md`; the user's knowledge base (optional) |
+| `brd-draft` | `../../templates/brd-template.md`, `../../templates/traceability-matrix.md`, `../../references/babok-classification.md`, `../../references/ears-patterns.md`, `../../references/ambiguity-words.md`, `../../references/commercial-section.md` |
+| `brd-gate` | `../../references/ieee29148-checklist.md`, `../../references/ambiguity-words.md`, `../../references/babok-classification.md`, `../../references/commercial-section.md`, `../../templates/traceability-matrix.md` |
 | `brd-finish` | `brd.md`, `review.md`; skill `anthropic-skills:docx` |
 
-Worked examples: `references/examples/good-brd.md` (passes the gate) and
-`references/examples/bad-brd.md` (four planted defects, must be BLOCKED).
+Worked examples: `../../references/examples/good-brd.md` (passes the gate) and
+`../../references/examples/bad-brd.md` (four planted defects, must be BLOCKED).
 
 ## Out of scope — point the user elsewhere
 
