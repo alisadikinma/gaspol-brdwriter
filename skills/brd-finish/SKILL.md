@@ -31,6 +31,9 @@ session: **STOP**, tell the user in one line that the Word file cannot be produc
 how to install the skill (Anthropic `document-skills`), and point out that `brd.md` is
 complete and usable as it is. Do not substitute a different converter silently.
 
+If the skill is present but **rendering fails**, report the error text verbatim, leave
+`brd.md` untouched, and do not hand over a partial `.docx`.
+
 ## File name
 
 `BRD-<CODE>-<NNN>.docx`

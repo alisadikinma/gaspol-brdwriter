@@ -7,6 +7,14 @@ read, its license, and what was taken. Fetched 2026-09-30. Clones live in `resea
 **Audit rule:** every script in a fetched repository is read before any of its text is
 read into the plugin. No fetched script is ever executed.
 
+SKILL.md audit (2026-09-30): gerardogdonoso `SKILL.md` read lines 1–582 in full and
+583–757 by heading; takusaotome `skills/business-analyst/SKILL.md` scanned by heading and
+for run instructions, plus the headings of its BRD template and BABOK reference. Run
+instructions found: takusaotome tells the agent to run `python scripts/business_analysis.py`
+(the audited local calculator); gerardogdonoso references `python tools/cazador-obsoletos.py`,
+a tool that is not in the repository. Neither instruction was copied into this plugin, and
+this plugin ships no scripts outside `tests/`.
+
 ## Repositories
 
 | Repo | Commit | License | Scripts audited | What this plugin takes |

@@ -37,6 +37,10 @@ Then resolve, in this order, stopping at the first that answers:
 5. **Nothing found** → say so in one line and run the full interview. This is the normal
    first-time path, not a degraded run.
 
+If a source is found but **errors** (the notes MCP fails, a path is unreadable), say so in
+one line with the error text and continue with the full interview. Never retry in a loop,
+and never treat an error as "no notes exist".
+
 Never hardcode a path, a vault name, a project name, or a person's name into this skill
 or into `references/`. The instruction to look ships with the plugin; the address is
 runtime input.

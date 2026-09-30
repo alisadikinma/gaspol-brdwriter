@@ -60,6 +60,7 @@ section number) and the line it sits on.
 **BLOCKING** if any of these is true:
 
 - any finding in checks **3, 4, 5, 6, or 7**;
+- a duplicate requirement ID (check 1);
 - any requirement fails **verifiable** or **unambiguous** (check 1);
 - any vague word without a bound in an `NFR-` row or an acceptance criterion (check 2).
 
