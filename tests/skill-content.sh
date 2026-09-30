@@ -32,5 +32,13 @@ need brd-gate 'PASS' 'BLOCKING' 'review.md' 'ieee29148-checklist.md' 'ambiguity-
 # --- Phase I -------------------------------------------------------------------------
 need brd-finish 'PASS' 'refuse' 'docx' 'BRD-' 'cover' 'Persetujuan' 'write-back'
 
+# --- Phase J: evals -------------------------------------------------------------------
+for e in evals/01-vague-idea.md evals/02-enhancement.md evals/03-iot-integration.md; do
+  if [ ! -f "$e" ]; then echo "MISSING eval: $e"; fail=1; continue; fi
+  for h in '## Prompt' '## Expected behaviour' '## Must not'; do
+    grep -qxF "$h" "$e" || { echo "$e: missing heading '$h'"; fail=1; }
+  done
+done
+
 [ "$fail" -eq 0 ] && echo "skill content OK"
 exit "$fail"

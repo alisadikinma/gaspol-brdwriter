@@ -49,8 +49,8 @@ yang terikat pada tanda tangan BRD, kelulusan UAT, dan BAST setelah hypercare.
 | KPI | Baseline | Target | Kapan diukur | Cara ukur |
 |---|---|---|---|---|
 | OEE rata-rata lini molding | 58% [src: brief Q6 — rekap manual Jan–Jun 2026] | 70% [src: brief Q7] | Bulan ke-6 setelah go-live | Rata-rata OEE harian dari dashboard selama satu bulan |
-| Waktu rekap laporan produksi | 6 jam per minggu [src: brief Q2] | 0 jam per minggu [src: brief Q7] | Bulan ke-1 setelah go-live | Laporan harian terbit otomatis tanpa input admin |
-| Downtime dengan alasan tercatat | 0% berkategori [src: brief Q9] | ≥ 95% berkategori [src: brief Q7] | Bulan ke-2 setelah go-live | Jumlah kejadian berhenti > 3 menit yang punya alasan ÷ total kejadian |
+| Waktu rekap laporan produksi | 6 jam per minggu [src: brief Q2] | 0 jam per minggu [src: brief Q7] | Bulan ke-1 setelah go-live [src: brief Q7] | Laporan harian terbit otomatis tanpa input admin |
+| Downtime dengan alasan tercatat | 0% berkategori [src: brief Q9] | ≥ 95% berkategori [src: brief Q7] | Bulan ke-2 setelah go-live [src: brief Q7] | Jumlah kejadian berhenti > 3 menit [src: brief Q9] yang punya alasan ÷ total kejadian |
 
 ## 4. Lingkup
 
@@ -100,7 +100,7 @@ flowchart LR
   O[Operator pilih alasan downtime dan isi reject di tablet] --> B
   B --> C[Dashboard supervisor dan plant manager]
   B --> N[Notifikasi mesin berhenti ke supervisor]
-  B --> R[Laporan harian terbit otomatis 06.30 WIB]
+  B --> R[Laporan harian terbit otomatis - FR-004]
 ```
 
 Gap (as-is → to-be):
@@ -125,7 +125,7 @@ Gap (as-is → to-be):
 | SR-001 | BR-001 | Supervisor shift | Supervisor perlu tahu mesin yang berhenti lebih dari 10 menit [src: brief Q10] tanpa berkeliling lantai produksi. | Must | [CONFIRMED] |
 | SR-002 | BR-001 | Plant Manager | Plant manager perlu melihat OEE per mesin, per shift, dan per hari. | Must | [CONFIRMED] |
 | SR-003 | BR-002 | Admin produksi | Admin produksi perlu laporan produksi harian tanpa menyalin data. | Must | [CONFIRMED] |
-| SR-004 | BR-003 | Operator mesin | Operator perlu mencatat alasan downtime langsung di mesin. | Must | [CONFIRMED] |
+| SR-004 | BR-003 | Operator mesin | Operator perlu mencatat alasan downtime di tablet mesin tempat ia bekerja. | Must | [CONFIRMED] |
 | SR-005 | BR-004 | Plant Manager | Plant manager perlu produksi tetap tercatat selama peralihan. | Must | [CONFIRMED] |
 
 ## 9. Functional Requirements
@@ -135,10 +135,10 @@ Gap (as-is → to-be):
 | FR-001 | SR-001 | Ketika mesin berhenti lebih dari 10 menit [src: brief Q10], sistem harus mengirim notifikasi ke supervisor shift yang sedang bertugas berisi ID mesin, jam berhenti, dan durasi. | Must | [CONFIRMED] |
 | FR-002 | SR-002 | Sistem harus menghitung OEE per mesin per shift sesuai RULE-001. | Must | [CONFIRMED] |
 | FR-003 | SR-002 | Sistem harus menampilkan OEE per mesin, per shift, dan per hari pada dashboard. | Must | [CONFIRMED] |
-| FR-004 | SR-003 | Ketika jam menunjukkan 06.30 WIB [src: brief Q11], sistem harus menerbitkan laporan produksi hari sebelumnya berisi output, reject, dan downtime per mesin dalam format PDF dan Excel. | Must | [CONFIRMED] |
+| FR-004 | SR-003 | Ketika jam menunjukkan 06.30 WIB [src: brief Q11], sistem harus menerbitkan laporan produksi hari sebelumnya berisi output, reject, dan downtime per mesin dan per pesanan produksi (DI-001) dalam format PDF dan Excel. | Must | [CONFIRMED] |
 | FR-005 | SR-004 | Ketika mesin berhenti lebih dari 3 menit [src: brief Q9], sistem harus meminta operator di tablet mesin memilih satu alasan dari daftar alasan downtime baku (RULE-002). | Must | [CONFIRMED] |
 | FR-006 | SR-004 | Selama alasan downtime sebuah kejadian berhenti belum dipilih, sistem harus menandai kejadian itu "alasan belum diisi" pada dashboard supervisor. | Should | [CONFIRMED] |
-| FR-007 | SR-002 | Sistem harus mengizinkan plant manager mengekspor data OEE untuk rentang tanggal yang dipilih ke format Excel. | Should | [CONFIRMED] |
+| FR-007 | SR-002 | Sistem harus mengizinkan pengguna berperan Supervisor, Plant Manager, atau Admin produksi (NFR-004) mengekspor data OEE untuk rentang tanggal yang dipilih ke format Excel. | Should | [CONFIRMED] |
 | FR-008 | SR-003 | Sistem harus mencatat jumlah produk baik dan jumlah reject per mesin per shift dari input operator. | Must | [CONFIRMED] |
 | FR-009 | SR-001 | Jika sinyal sebuah mesin tidak diterima lebih dari 2 menit [src: brief Q12], maka sistem harus menampilkan mesin itu berstatus "tanpa data", terpisah dari status "berhenti". | Must | [CONFIRMED] |
 | FR-010 | SR-005 | Selama periode paralel (TR-002), sistem harus menerima input manual output dan downtime untuk mesin yang sinyalnya belum terhubung. | Should | [CONFIRMED] |
@@ -150,7 +150,8 @@ Gap (as-is → to-be):
 | NFR-001 | SR-002 | Performance efficiency | Dashboard harus menampilkan data shift berjalan dalam ≤ 3 detik (p95) dengan 30 pengguna bersamaan [src: brief Q13]. | Must | [CONFIRMED] |
 | NFR-002 | SR-001 | Performance efficiency | Notifikasi FR-001 harus diterima supervisor ≤ 60 detik setelah ambang 10 menit terlewati [src: brief Q13]. | Must | [CONFIRMED] |
 | NFR-003 | SR-002 | Reliability | Sistem harus tersedia ≥ 99,5% per bulan, 24 jam, di luar perawatan terjadwal yang diumumkan ≥ 48 jam sebelumnya [src: brief Q14]. | Must | [CONFIRMED] |
-| NFR-004 | SR-002 | Security | Hanya pengguna berperan Supervisor, Plant Manager, atau Admin produksi yang dapat mengekspor data; tiap ekspor tercatat di log audit berisi pengguna, waktu, dan rentang data [src: brief Q15]. | Must | [CONFIRMED] |
+| NFR-004 | SR-002 | Security | Hanya pengguna berperan Supervisor, Plant Manager, atau Admin produksi yang dapat mengekspor data [src: brief Q15]. | Must | [CONFIRMED] |
+| NFR-006 | SR-002 | Security | Sistem harus mencatat tiap ekspor data di log audit berisi pengguna, waktu, dan rentang data [src: brief Q15]. | Must | [CONFIRMED] |
 | NFR-005 | SR-003 | Maintainability | Data produksi harus disimpan minimal 5 tahun [src: brief Q16 — kebijakan arsip internal klien]. | Must | [CONFIRMED] |
 
 ## 11. Business Rules
@@ -212,6 +213,7 @@ keperluan operasional produksi, dan akses log audit hanya untuk Plant Manager
 | AC-006 | FR-008 | Operator shift malam mengisi 950 baik dan 12 reject untuk M-11 | Shift malam berakhir | Laporan shift malam M-11 menunjukkan 950 baik dan 12 reject |
 | AC-007 | FR-009 | Mesin M-15 mengirim sinyal normal | Sinyal M-15 tidak diterima selama 3 menit | Dashboard menampilkan M-15 berstatus "tanpa data", bukan "berhenti" |
 | AC-008 | NFR-001 | 30 pengguna membuka dashboard bersamaan | Pengujian beban 15 menit dijalankan | Waktu tampil p95 ≤ 3 detik |
+| AC-009 | TR-002 | Periode paralel berjalan dan output M-02 di formulir kertas 1.000 unit | Sistem mencatat 985 unit untuk M-02 pada shift yang sama | Selisih 1,5% tercatat di bawah ambang 2% dan formulir kertas M-02 boleh dihentikan setelah periode paralel selesai |
 
 ## 18. Komersial
 
@@ -232,7 +234,7 @@ berulang pada tahun pertama; biaya dukungan tahun kedua ditawarkan terpisah [src
 | Termin | % | Nilai | Milestone | Bukti milestone |
 |---|---|---|---|---|
 | T1 | 30% | Rp 144.000.000 [src: brief Q18] | BRD versi final ditandatangani kedua pihak | BRD bertanda tangan |
-| T2 | 50% | Rp 240.000.000 [src: brief Q18] | UAT lulus | Berita acara UAT ditandatangani Plant Manager |
+| T2 | 50% | Rp 240.000.000 [src: brief Q18] | UAT lulus | Berita acara UAT ditandatangani Plant Manager, atau surat penyedia yang mencatat UAT dianggap lulus sesuai 18.4 |
 | T3 | 20% | Rp 96.000.000 [src: brief Q18] | Hypercare 30 hari selesai | BAST ditandatangani Direktur Operasional |
 
 Invoice jatuh tempo 14 hari kalender sejak diterima [src: brief Q18].
@@ -264,10 +266,10 @@ Harga dan termin berlaku sampai 31 Oktober 2026 [src: brief Q18].
 | BR | SR | FR/NFR | RULE | TR | Test/AC |
 |---|---|---|---|---|---|
 | BR-001 | SR-001 | FR-001, FR-009, NFR-002 | — | — | AC-001, AC-007 |
-| BR-001 | SR-002 | FR-002, FR-003, FR-007, NFR-001, NFR-003, NFR-004 | RULE-001, RULE-003 | — | AC-002, AC-003, AC-008 |
+| BR-001 | SR-002 | FR-002, FR-003, FR-007, NFR-001, NFR-003, NFR-004, NFR-006 | RULE-001, RULE-003 | — | AC-002, AC-003, AC-008 |
 | BR-002 | SR-003 | FR-004, FR-008, NFR-005 | — | — | AC-004, AC-006 |
 | BR-003 | SR-004 | FR-005, FR-006 | RULE-002 | — | AC-005 |
-| BR-004 | SR-005 | FR-010 | — | TR-001, TR-002, TR-003 | — |
+| BR-004 | SR-005 | FR-010 | — | TR-001, TR-002, TR-003 | AC-009 |
 
 ## 20. Glosarium
 
