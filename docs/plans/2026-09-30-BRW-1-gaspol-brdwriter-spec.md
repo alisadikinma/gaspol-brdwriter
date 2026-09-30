@@ -77,7 +77,12 @@ process (Mermaid). Phase 5: constraints, assumptions, risks, dependencies, compl
   local uncommitted config → none). Asks only the gaps. Every answer taken from a
   note carries `[from: <note>]`.
 - Max 3 questions per turn.
-- Emits `brief.md` with every item tagged `[CONFIRMED]` / `[ASSUMPTION]` / `[OPEN]`.
+- Emits `brief.md` with every item tagged `[CONFIRMED]` / `[ASSUMPTION]` / `[OPEN]`,
+  or `[DERIVED: <items>]` (follows from items already written; no other reading is
+  consistent) or `[RESEARCHED: <source, date>]` (public source, awaiting validation).
+  The two extra tags are adapted from gerardogdonoso/brd-business-analyst (decided
+  during BRW-1 execution): without them a derived fact must be asked again or mislabelled
+  an assumption.
 
 **`brd-draft`.** Entry gate: refuses to run without `brief.md`. Writes `brd.md`
 from `templates/brd-template.md`:
@@ -97,7 +102,8 @@ from `templates/brd-template.md`:
 2. Words from `ambiguity-words.md` without a measurable bound.
 3. Trace chain: every FR/NFR has a parent SR/BR; every BR has at least one child.
 4. Every number (price, KPI, client operating figure) has a source tag; untagged =
-   treated as invented.
+   treated as invented. Numbers inside acceptance-criteria scenarios are test data and
+   exempt.
 5. Every payment term tied to a verifiable milestone; terms sum to 100%.
 6. No `[OPEN]` item left in a section the client signs.
 Emits `review.md` with verdict **PASS** or **BLOCKING** plus a fix list; loops back
