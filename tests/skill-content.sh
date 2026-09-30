@@ -21,5 +21,9 @@ need gaspol-brdwriter 'brief.md' 'brd.md' 'review.md' 'brd-interview' 'brd-draft
 need brd-interview 'max 3 questions' '[CONFIRMED]' '[ASSUMPTION]' '[OPEN]' '[from:' \
   'brief.md' 'UU PDP' 'Step 0' 'domain-questions.md'
 
+# --- Phase G -------------------------------------------------------------------------
+need brd-draft 'refuse' 'brief.md' 'BR-' 'SR-' 'FR-' 'NFR-' 'RULE-' 'TR-' 'DI-' 'Given' \
+  'MoSCoW' '[src:' 'commercial-section.md' 'traceability-matrix.md' '100%'
+
 [ "$fail" -eq 0 ] && echo "skill content OK"
 exit "$fail"
