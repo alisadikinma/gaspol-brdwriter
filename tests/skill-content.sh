@@ -25,5 +25,9 @@ need brd-interview 'max 3 questions' '[CONFIRMED]' '[ASSUMPTION]' '[OPEN]' '[fro
 need brd-draft 'refuse' 'brief.md' 'BR-' 'SR-' 'FR-' 'NFR-' 'RULE-' 'TR-' 'DI-' 'Given' \
   'MoSCoW' '[src:' 'commercial-section.md' 'traceability-matrix.md' '100%'
 
+# --- Phase H -------------------------------------------------------------------------
+need brd-gate 'PASS' 'BLOCKING' 'review.md' 'ieee29148-checklist.md' 'ambiguity-words.md' \
+  '100%' '[src:' '[OPEN]' '{{' 'orphan'
+
 [ "$fail" -eq 0 ] && echo "skill content OK"
 exit "$fail"
