@@ -1,0 +1,13 @@
+{
+  "name": "gaspol-brdwriter",
+  "description": "Writes a client-signable Business Requirements Document per IIBA BABOK v3 and ISO/IEC/IEEE 29148 with a commercial section (package, price, payment terms tied to verifiable milestones, acceptance, sign-off): interview the gaps after reading the user's knowledge base, draft with a full trace chain, pass a blocking quality gate, then render .docx.",
+  "version": "0.1.0",
+  "author": { "name": "Ali Sadikin", "url": "https://github.com/alisadikinma" },
+  "homepage": "https://github.com/alisadikinma/gaspol-brdwriter",
+  "repository": "https://github.com/alisadikinma/gaspol-brdwriter",
+  "license": "MIT",
+  "keywords": [
+    "brd", "business-requirements", "babok", "ieee-29148", "requirements-engineering",
+    "proposal", "claude-code"
+  ]
+}
