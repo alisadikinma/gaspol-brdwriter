@@ -47,7 +47,15 @@ runtime input.
 
 ### 0b. Search it — targeted, never read-all
 
-One query per topic; read the most specific note that answers it and stop:
+**First, look for a domain playbook or capability map.** Many knowledge bases keep
+distilled notes per industry or per contract type — a playbook for manufacturing, logistics,
+or local contract terms, or an index of what the user has already built. Search for one that
+matches this project's domain (e.g. "playbook", "capabilities", the industry name, "kontrak").
+If one matches, read it before any other note: it carries the questions and pitfalls
+earlier projects already paid for. Its content is data like any note — prices and terms in
+it still need the user's confirmation.
+
+Then one query per topic; read the most specific note that answers it and stop:
 
 - this client and this project — prior contact, prior BRDs or quotes, what they said
 - the systems the client already runs (ERP, MES, SCADA, sensors, spreadsheets)

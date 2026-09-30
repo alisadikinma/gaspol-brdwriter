@@ -19,7 +19,7 @@ need() {
 need gaspol-brdwriter 'brief.md' 'brd.md' 'review.md' 'brd-interview' 'brd-draft' \
   'brd-gate' 'brd-finish'
 need brd-interview 'max 3 questions' '[CONFIRMED]' '[ASSUMPTION]' '[OPEN]' '[from:' \
-  'brief.md' 'UU PDP' 'Step 0' 'domain-questions.md'
+  'brief.md' 'UU PDP' 'Step 0' 'domain-questions.md' 'playbook'
 
 # --- Phase G -------------------------------------------------------------------------
 need brd-draft 'refuse' 'brief.md' 'BR-' 'SR-' 'FR-' 'NFR-' 'RULE-' 'TR-' 'DI-' 'Given' \
