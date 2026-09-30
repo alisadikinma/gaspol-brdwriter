@@ -46,5 +46,46 @@ if [ -f "$C" ]; then
   grep -qi 'milestone' "$C" || { echo "MISSING in $C: milestone"; fail=1; }
 fi
 
+# --- Phase D: templates --------------------------------------------------------------
+TPL=templates/brd-template.md
+if [ ! -f "$TPL" ]; then
+  echo "MISSING template: $TPL"; fail=1
+else
+  while IFS= read -r h; do
+    grep -qxF "$h" "$TPL" || { echo "MISSING heading in brd-template: $h"; fail=1; }
+  done <<'HEADINGS'
+## 0. Kendali Dokumen
+## 1. Ringkasan Eksekutif
+## 2. Latar Belakang & Masalah
+## 3. Tujuan Bisnis & KPI
+## 4. Lingkup
+## 5. Stakeholder & RACI
+## 6. Proses As-Is & To-Be
+## 7. Business Requirements
+## 8. Stakeholder Requirements
+## 9. Functional Requirements
+## 10. Non-Functional Requirements
+## 11. Business Rules
+## 12. Data & Integrasi
+## 13. Transition Requirements
+## 14. Asumsi, Batasan & Dependensi
+## 15. Risiko
+## 16. Kepatuhan
+## 17. Kriteria Penerimaan
+## 18. Komersial
+## 19. Matriks Keterlusuran
+## 20. Glosarium
+## 21. Pertanyaan Terbuka
+## 22. Persetujuan
+HEADINGS
+fi
+TM=templates/traceability-matrix.md
+if [ ! -f "$TM" ]; then
+  echo "MISSING template: $TM"; fail=1
+else
+  grep -qF '| BR | SR | FR/NFR | RULE | TR | Test/AC |' "$TM" \
+    || { echo "MISSING header row in $TM"; fail=1; }
+fi
+
 [ "$fail" -eq 0 ] && echo "refs OK"
 exit "$fail"
