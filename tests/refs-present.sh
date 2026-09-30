@@ -20,5 +20,31 @@ else
 fi
 [ -f research/landscape-2026-09-30.md ] || { echo "MISSING: research/landscape-2026-09-30.md"; fail=1; }
 
+# --- Phase C: references ------------------------------------------------------------
+for f in babok-classification.md ieee29148-checklist.md ears-patterns.md \
+         ambiguity-words.md commercial-section.md domain-questions.md; do
+  p="references/$f"
+  if [ ! -f "$p" ]; then echo "MISSING ref: $p"; fail=1; continue; fi
+  n=$(wc -l < "$p")
+  [ "$n" -ge 20 ] || { echo "TOO THIN: $p ($n lines, minimum 20)"; fail=1; }
+done
+A=references/ambiguity-words.md
+if [ -f "$A" ]; then
+  for h in "## Indonesian" "## English"; do
+    grep -qxF "$h" "$A" || { echo "MISSING heading in $A: $h"; fail=1; }
+  done
+fi
+I=references/ieee29148-checklist.md
+if [ -f "$I" ]; then
+  for w in necessary unambiguous complete consistent verifiable feasible traceable; do
+    grep -qiw "$w" "$I" || { echo "MISSING characteristic in $I: $w"; fail=1; }
+  done
+fi
+C=references/commercial-section.md
+if [ -f "$C" ]; then
+  grep -qF '100%' "$C" || { echo "MISSING in $C: 100%"; fail=1; }
+  grep -qi 'milestone' "$C" || { echo "MISSING in $C: milestone"; fail=1; }
+fi
+
 [ "$fail" -eq 0 ] && echo "refs OK"
 exit "$fail"
