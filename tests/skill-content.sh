@@ -29,5 +29,8 @@ need brd-draft 'refuse' 'brief.md' 'BR-' 'SR-' 'FR-' 'NFR-' 'RULE-' 'TR-' 'DI-' 
 need brd-gate 'PASS' 'BLOCKING' 'review.md' 'ieee29148-checklist.md' 'ambiguity-words.md' \
   '100%' '[src:' '[OPEN]' '{{' 'orphan'
 
+# --- Phase I -------------------------------------------------------------------------
+need brd-finish 'PASS' 'refuse' 'docx' 'BRD-' 'cover' 'Persetujuan' 'write-back'
+
 [ "$fail" -eq 0 ] && echo "skill content OK"
 exit "$fail"
